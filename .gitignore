@@ -198,3 +198,11 @@ sketch
 # Ignore all local history of files
 .history
 .ionide
+
+#data folders
+data_pipeline/data/*
+!data_pipeline/data/.gitkeep
+
+frontend/src/data/*
+!frontend/src/data/.gitkeep
+
