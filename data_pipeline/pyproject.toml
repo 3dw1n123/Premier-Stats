@@ -7,7 +7,9 @@ authors = [
 ]
 requires-python = ">=3.12,<3.14"
 dependencies = [
-    "soccerdata (>=1.8.8,<2.0.0)"
+    "soccerdata (>=1.8.8,<2.0.0)",
+    "supabase (>=2.28.3,<3.0.0)",
+    "python-dotenv (>=1.2.2,<2.0.0)",
 ]
 
 
