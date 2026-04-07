@@ -91,7 +91,7 @@ def round_player_columns(df: pd.DataFrame, round_columns:dict)->pd.DataFrame:
     return df_round
 
 
-def proccess_all_players(player_stats: pd.DataFrame)->pd.DataFrame:
+def process_all_players(player_stats: pd.DataFrame)->pd.DataFrame:
     """
     Orchestrates the entire data cleaning and transformation pipeline for players.
 
