@@ -1,4 +1,5 @@
 import { IoMenu } from "react-icons/io5"
+import { NavLink } from "react-router"
 
 const PageHeader = () => {
   return (
@@ -10,10 +11,26 @@ const PageHeader = () => {
                   PL stats
                 </span>
                 <nav className="hidden gap-6 md:flex">
-                  <a className="text-white hover:text-secondary-premier hover:border-b-2 text-xl " href="">Home</a>
-                  <a className="hidden text-white hover:text-secondary-premier hover:border-b-2 text-xl " href="">Teams</a>
-                  <a className="hidden text-white hover:text-secondary-premier hover:border-b-2 text-xl " href="">Players</a>
-                  <a className="hidden text-white hover:text-secondary-premier hover:border-b-2 text-xl " href="">Fixtures</a>
+                  <NavLink to={"/"} className={({isActive})=>
+                  ` text-xl ${isActive ? "text-secondary-premier border-b-2" 
+                    :"text-white hover:text-secondary-premier hover:border-b-2"}`}>
+                        Home
+                  </NavLink>
+                  <NavLink to={"/players"} className={({isActive})=>
+                  ` hidden text-xl ${isActive ? "text-secondary-premier border-b-2" 
+                    :"text-white hover:text-secondary-premier hover:border-b-2"}`}>
+                        Teams
+                  </NavLink>
+                  <NavLink to={"/players"} className={({isActive})=>
+                  ` text-xl ${isActive ? "text-secondary-premier border-b-2" 
+                    :"text-white hover:text-secondary-premier hover:border-b-2"}`}>
+                        Players
+                  </NavLink>
+                  <NavLink to={"/players"} className={({isActive})=>
+                  `hidden text-xl ${isActive ? "text-secondary-premier border-b-2" 
+                    :"text-white hover:text-secondary-premier hover:border-b-2"}`}>
+                        Fixtures
+                  </NavLink>
                 </nav>
               </div>
 
