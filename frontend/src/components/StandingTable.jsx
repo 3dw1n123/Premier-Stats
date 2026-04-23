@@ -1,13 +1,10 @@
-import React from 'react'
-
 const StandingTable = ({table}) => {
-    console.log(table)
   return (
     <div className = "">
          <table className="w-full border-collapse">
             <thead>
                 <tr className= "sticky top-0 bg-white z-10 border-none">
-                    <th className = "px-6 py-4 text-[11px] font-bold tracking-widest text-left">Pos</th>   
+                    <th className = "px-6 py-4 text-[11px] font-bold tracking-widest">Pos</th>   
                     <th className = "px-6 py-4 text-[11px] font-bold tracking-widest text-left">CLUB</th>   
                     <th className = "hidden md:table-cell px-6 py-4 text-[11px] font-bold tracking-widest">MP</th>
                     <th className = "hidden md:table-cell px-6 py-4 text-[11px] font-bold tracking-widest">W</th>
@@ -24,7 +21,7 @@ const StandingTable = ({table}) => {
            
                 {table.map((team, index) => (
                 <tr className="" key={index}>
-                    <td className="px-6 py-4 font-bold">{index+1}</td> 
+                    <td className="px-6 py-4 font-bold text-center">{index+1}</td> 
                     <td className="flex items-center gap-3 px-6 py-4">
                         <span className="font-bold">{team.team}</span>
                     </td>
