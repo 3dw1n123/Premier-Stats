@@ -2,7 +2,7 @@ import React from 'react'
 
 const StatsCard = ({title,player,stat,amount,team}) => {
   return (
-    <div className="flex flex-col p-6 rounded-xl shadow-[0_20px_40px_rgba(55,0,59,0.04)]">
+    <div className="flex flex-col p-6 rounded-xl shadow-lg">
             <div className="relative flex flex-col flex-1">
                 <div>
                   <span className="text-primary-premier font-bold uppercase tracking-widest text-[10px] mb-4">Top {title}</span>
