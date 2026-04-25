@@ -24,3 +24,14 @@ export const getPlayers = async({pageParam}) =>{
       return data;
   }
 
+export const getPlayerById = async({id}) =>{
+    const{data, error} = await supabase
+    .from('players_data')
+    .select('*')
+    .eq("player_id", id)
+    .single();
+
+      if (error) throw new Error(error.message);  
+      console.log(data)
+      return data;
+}
