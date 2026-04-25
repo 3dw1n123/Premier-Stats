@@ -1,4 +1,18 @@
+import { Link } from "react-router"
+import { getPlayerById } from "../api/services";
+import { useQueryClient } from "@tanstack/react-query";
+
 const PlayerTable = ({players, observerRef, isFetchingNextPage, hasNextPage}) => {
+
+const queryClient = useQueryClient();
+
+const handlePrefetch = (id) => {
+  queryClient.prefetchQuery({
+    queryKey: ["player", id],
+    queryFn: () => getPlayerById({ id }),
+    staleTime: 1000 * 60 * 5,
+  });
+};
 
   return (
 
@@ -19,7 +33,7 @@ const PlayerTable = ({players, observerRef, isFetchingNextPage, hasNextPage}) =>
                                 <tr className="hover:bg-gray-100 transition-colors " key={index}>
                                     <td className="px-4 py-2">
                                         <div className="flex flex-col">
-                                            <p className="leading-tight font-bold">{player.player}</p>
+                                            <Link to={`/player/${player.player_id}/${player.player.toLowerCase().replace(/\s+/g, '-')}`} className="leading-tight font-bold" onMouseEnter={() => handlePrefetch(player.player_id)}>{player.player}</Link>
                                             <div className="flex flex-col text-secondary-premier">
                                                 <p className="font-bold text-xs">{player.team}</p>
                                                 <p className="font-bold text-xs">{player.position.split(" ")[0]}</p>
