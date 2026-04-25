@@ -2812,14 +2812,14 @@ files = [
 
 [[package]]
 name = "soccerdata"
-version = "1.8.8"
+version = "1.9.0"
 description = "A collection of scrapers for soccer data from various websites / APIs."
 optional = false
-python-versions = "<3.14,>=3.9"
+python-versions = "<3.15,>=3.10"
 groups = ["main"]
 files = [
-    {file = "soccerdata-1.8.8-py3-none-any.whl", hash = "sha256:2604ea5ea28034c51f87c1512fe62dda9759f0fcfcb48d4c57fd7927c26ff631"},
-    {file = "soccerdata-1.8.8.tar.gz", hash = "sha256:24a4896a9dcf585bc7d2641bf87d251d3b5f8f7ffc3cc195d67938f66c29a3d2"},
+    {file = "soccerdata-1.9.0-py3-none-any.whl", hash = "sha256:740d9e87782e59e880d8ad1ec855bceaedb3f08b85030dba7434430e3593c719"},
+    {file = "soccerdata-1.9.0.tar.gz", hash = "sha256:9a41377f925189f254a787fe733a7008d72d57df87385caf74b1259b357fa656"},
 ]
 
 [package.dependencies]
@@ -2828,13 +2828,13 @@ lxml = [
     {version = ">=4.9.4", markers = "python_version < \"3.13\""},
     {version = ">=5.0.0", markers = "python_version >= \"3.13\""},
 ]
-pandas = ">=2.0.0,<2.1.0 || >2.1.0,<3.0.0"
-rich = ">=14.0.0,<15.0.0"
-seleniumbase = ">=4.38.2,<5.0.0"
-tqdm = ">=4.67.1,<5.0.0"
-unidecode = ">=1.4.0,<2.0.0"
-urllib3 = "<2"
-wrapper-tls-requests = ">=1.1.4,<2.0.0"
+pandas = ">=2.0.0,<2.1.0 || >2.1.0,<4.0.0"
+rich = ">=14.0.0,<16.0.0"
+seleniumbase = ">=4.38.2,<6.0.0"
+tqdm = ">=4.67.1,<6.0.0"
+unidecode = ">=1.4.0,<3.0.0"
+urllib3 = "<3"
+wrapper-tls-requests = ">=1.1.4,<3.0.0"
 
 [package.extras]
 socceraction = ["socceraction"]
