@@ -33,7 +33,7 @@ const handlePrefetch = (id) => {
                                 <tr className="hover:bg-gray-100 transition-colors " key={index}>
                                     <td className="px-4 py-2">
                                         <div className="flex flex-col">
-                                            <Link to={`/player/${player.player_id}/${player.player.toLowerCase().replace(/\s+/g, '-')}`} className="leading-tight font-bold" onMouseEnter={() => handlePrefetch(player.player_id)}>{player.player}</Link>
+                                            <Link to={`/player/${player.id}/${player.player_name.toLowerCase().replace(/\s+/g, '-')}`} className="leading-tight font-bold" onMouseEnter={() => handlePrefetch(player.id)}>{player.player_name}</Link>
                                             <div className="flex flex-col text-secondary-premier">
                                                 <p className="font-bold text-xs">{player.team}</p>
                                                 <p className="font-bold text-xs">{player.position.split(" ")[0]}</p>
@@ -41,7 +41,7 @@ const handlePrefetch = (id) => {
 
                                         </div>
                                     </td>
-                                    <td className="px-2 py-2 text-center text-xs font-bold">{player.matches}</td>
+                                    <td className="px-2 py-2 text-center text-xs font-bold">{player.matches_played}</td>
                                     <td className="px-2 py-2 text-center text-xs font-bold">{player.goals}</td>
                                     <td className="px-2 py-2 text-center text-xs font-bold">{player.assists}</td>
                                     <td className="px-2 py-2 text-center text-xs font-bold">{player.yellow_cards}</td>
