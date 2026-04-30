@@ -16,19 +16,19 @@ export const getPlayers = async({pageParam}) =>{
                 const to = from + items_per_page - 1;
 
                 const {data,error} = await supabase
-                .from('players_data')
+                .from('players_stats')
                 .select('*')
                 .range(from,to);
-                
+      
       if (error) throw new Error(error.message); 
       return data;
   }
 
 export const getPlayerById = async({id}) =>{
     const{data, error} = await supabase
-    .from('players_data')
+    .from('players_stats')
     .select('*')
-    .eq("player_id", id)
+    .eq("id", id)
     .single();
 
       if (error) throw new Error(error.message);  
