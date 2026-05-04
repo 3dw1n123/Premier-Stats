@@ -1,4 +1,5 @@
 import pandas as pd
+from utils.df_helpers import replace_values
 
 
 def order_league_table(df:pd.DataFrame)->pd.DataFrame:
@@ -29,6 +30,7 @@ def process_league_table(league_table: pd.DataFrame)-> pd.DataFrame:
         df_clean =  (
             league_table
             .pipe(order_league_table)
+            .pipe(replace_values,{"Liverpool FC":"Liverpool"},"team")
         )
 
         return df_clean

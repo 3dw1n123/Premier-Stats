@@ -24,6 +24,5 @@ def get_league_table(scraper: sd.Sofascore)-> pd.DataFrame:
         pd.DataFrame containing the league table data.
     """
     df = scraper.read_league_table()
-    #df_clean = df.sort_values(by="team").reset_index(drop=True)
 
     return df.reset_index(drop=True)
