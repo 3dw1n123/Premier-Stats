@@ -1,5 +1,6 @@
 import soccerdata as sd
 import pandas as pd
+import os
 
 def get_sofascore_scraper(league: str, season: int)-> sd.Sofascore:
     """
@@ -10,7 +11,8 @@ def get_sofascore_scraper(league: str, season: int)-> sd.Sofascore:
     Returns:
         sd.Sofascore: A configured instance of the Sofascore scraper.
     """
-    sofascore_scraper = sd.Sofascore(league,season)
+    proxy_url = os.environ.get("HTTP_PROXY")
+    sofascore_scraper = sd.Sofascore(league, season, proxy=proxy_url)
     return sofascore_scraper
 
 
