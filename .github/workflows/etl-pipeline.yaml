@@ -37,4 +37,7 @@ jobs:
           # ENV variables
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          # Proxy
+          HTTP_PROXY: ${{ secrets.WEBSHARE_PROXY }}
+          HTTPS_PROXY: ${{ secrets.WEBSHARE_PROXY }}
         run: poetry run python main.py
