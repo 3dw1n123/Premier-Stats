@@ -40,4 +40,6 @@ jobs:
           # Proxy
           HTTP_PROXY: ${{ secrets.WEBSHARE_PROXY }}
           HTTPS_PROXY: ${{ secrets.WEBSHARE_PROXY }}
+
+          NO_PROXY: localhost,127.0.0.1,::1
         run: poetry run python main.py
