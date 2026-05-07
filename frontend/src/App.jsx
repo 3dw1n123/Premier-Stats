@@ -6,11 +6,13 @@ import PageHeader from './components/PageHeader'
 import ButtonCard from './components/ButtonCard'
 import SectionHeader from './components/SectionHeader'
 import { useStandings } from './hooks/useStandings'
+import { useTopStats } from './hooks/useTopStats'
 
 function App() {
 
-const {data,isLoading} = useStandings();
-
+const {data: standings,isLoading: loadinStandings} = useStandings();
+const {data: topStats, isLoading: loadingStats, isError} = useTopStats();
+console.log(topStats)
 
 
   return (
@@ -29,19 +31,33 @@ const {data,isLoading} = useStandings();
                               </div>
                               <div className="flex-1 overflow-x-auto overflow-y-auto">
 
-                               {isLoading ? (
+                               {loadinStandings ? (
                                       <p className="p-6 text-center">Loading standings...</p>
                                     ) : (
-                                      <StandingTable table={data}/>
+                                      <StandingTable table={standings}/>
                                     )}
                               </div>
 
                           </section>
 
                           <aside className="grid grid-cols-2 lg:col-span-4 gap-4 my-4">
-                              <StatsCard title="scorer" player = "Erling Haaland" stat = "goals" amount = "27" team = "Manchester City"/>
-                              <StatsCard title="assistant" player = "Bruno Fernandes" stat = "Assist" amount = "16" team = "Manchester United"/>
-                              <StatsCard title="G+A" player = "Erling Haaland" stat = "G+A" amount = "32" team = "Manchester City"/>
+                              {loadingStats ? (
+                                <div className="col-span-2 p-6 flex items-center justify-center">
+                                  <p className="text-gray-500 font-medium">Loading player stats...</p>
+                                </div>
+                              ) : isError ? (
+                                <div className="col-span-2 p-6 flex items-center justify-center">
+                                  <p className="text-red-500 font-medium">Error loading stats.</p>
+                                </div>
+                              ) : (
+                              <>
+                                <StatsCard title="scorer" player={topStats?.scorer?.player_name} stat="goals" amount={topStats?.scorer?.goals} team={topStats?.scorer?.team} id={topStats?.scorer?.id}/>
+
+                                <StatsCard title="assistant" player={topStats?.assister?.player_name} stat="Assist" amount={topStats?.assister?.assists} team={topStats?.assister?.team} id={topStats?.assister?.id}/>
+                                
+                                <StatsCard title="Clean sheets" player={topStats?.goalkeeper?.player_name} stat="Clean sheets" amount={topStats?.goalkeeper?.gk_clean_sheets} team={topStats?.goalkeeper?.team} id={topStats?.goalkeeper?.id}/>
+                              </>
+                            )}
                               <div className="flex flex-col gap-4">
                                 <ButtonCard 
                                   title="Next Fixtures" 
