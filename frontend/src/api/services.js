@@ -40,3 +40,51 @@ export const getPlayerById = async({id}) =>{
       console.log(data)
       return data;
 }
+
+
+export const getTopScorer = async() =>{
+                const {data,error} = await supabase
+                .from('players_stats')
+                .select('player_name, team, goals, id')
+                .order('goals', { ascending: false })
+                .limit(1).single();
+
+      if (error) throw new Error(error.message); 
+        return data;
+}
+
+export const getTopAssister = async() =>{
+                const {data,error} = await supabase
+                .from('players_stats')
+                .select('player_name, team, assists, id')
+                .order('assists', { ascending: false })
+                .limit(1).single();
+
+      if (error) throw new Error(error.message); 
+        return data;
+}
+
+export const getTopGoalkeeper = async() =>{
+                const {data,error} = await supabase
+                .from('players_stats')
+                .select('player_name, team, gk_clean_sheets, id')
+                .order('gk_clean_sheets', { ascending: false })
+                .limit(1).single();
+
+      if (error) throw new Error(error.message); 
+        return data;
+}
+
+export const getTopStatsCards = async () => {
+  const [scorer, assister, goalkeeper] = await Promise.all([
+    getTopScorer(),
+    getTopAssister(),
+    getTopGoalkeeper()
+  ]);
+
+  return {
+    scorer,
+    assister,
+    goalkeeper
+  };
+}
