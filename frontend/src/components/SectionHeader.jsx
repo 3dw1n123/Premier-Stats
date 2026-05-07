@@ -7,7 +7,7 @@ const SectionHeader = ({subtitle, title, description}) => {
             <span className="text-xs font-bold tracking-widest text-secondary-premier">{subtitle}</span>
         </div>
         <h1 className="mb-4 -ml-1 text-5xl font-black tracking-tighter md:text-7xl">{title}</h1>
-        <p className="max-w-xl font-medium">{description}</p>
+        <p className="max-w-lg font-medium">{description}</p>
 
     </header>
   )
