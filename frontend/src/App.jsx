@@ -6,12 +6,12 @@ import PageHeader from './components/PageHeader'
 import ButtonCard from './components/ButtonCard'
 import SectionHeader from './components/SectionHeader'
 import { useStandings } from './hooks/useStandings'
-import { useTopStats } from './hooks/useTopStats'
+import { useHomeStats } from './hooks/useHomeStats'
 
 function App() {
 
 const {data: standings,isLoading: loadinStandings} = useStandings();
-const {data: topStats, isLoading: loadingStats, isError} = useTopStats();
+const {data: topStats, isLoading: loadingStats, isError} = useHomeStats();
 console.log(topStats)
 
 
@@ -27,7 +27,7 @@ console.log(topStats)
                           <section className="lg:col-span-8 rounded-xl overflow-hidden flex flex-col max-h-[600px] shadow-lg">
                               <div className="shrink-0 bg-primary-premier bg-surface-container-highest flex items-center justify-between px-6 py-4">
                                 <h3 className=" label-md:font-bold label-md:uppercase font-['Inter'] text-white">League Table</h3>
-                                <span className="bg-primary-container rounded-full px-2 py-0.5 text-[10px] font-bold text-white">MATCHWEEK 28</span>
+                                <span className="bg-primary-container rounded-full px-2 py-0.5 text-[10px] font-bold text-white">MATCHWEEK {topStats?.matchweek?.MP}</span>
                               </div>
                               <div className="flex-1 overflow-x-auto overflow-y-auto">
 
