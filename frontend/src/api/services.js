@@ -10,7 +10,7 @@ export const getStandings = async() =>{
         return data;
   }
 
-export const getPlayers = async({pageParam, search}) =>{
+export const getPlayers = async({pageParam, search, sortBy, sortOrder}) =>{
                 const items_per_page = 8;
                 const from = pageParam * items_per_page;
                 const to = from + items_per_page - 1;
@@ -20,8 +20,14 @@ export const getPlayers = async({pageParam, search}) =>{
                   .select('*')
               
                 if (search) {
-                  query = query.or(`player_name.ilike.%${search}%,team.ilike.%${search}%`)
+                  query = query.or(`player_name.ilike.%${search}%`)
                 }
+                if (sortBy) {
+                const isAscending = sortOrder === 'asc';
+                query = query.order(sortBy, { ascending: isAscending, nullsFirst: false });
+              } else {
+                query = query.order('player_name', { ascending: true });
+              }
                 
                 const {data,error} = await query.range(from, to) 
 
@@ -75,16 +81,40 @@ export const getTopGoalkeeper = async() =>{
         return data;
 }
 
-export const getTopStatsCards = async () => {
-  const [scorer, assister, goalkeeper] = await Promise.all([
+export const getMatchWeek = async() =>{    
+                const {data,error} = await supabase
+                .from('positions')
+                .select('MP')
+                .order('MP', {ascending: false})
+                .limit(1).single();
+
+      if (error) throw new Error(error.message); 
+        return data;
+}
+
+export const getHomeStats = async () => {
+  const [scorer, assister, goalkeeper, matchweek] = await Promise.all([
     getTopScorer(),
     getTopAssister(),
-    getTopGoalkeeper()
+    getTopGoalkeeper(),
+    getMatchWeek()
   ]);
 
   return {
     scorer,
     assister,
-    goalkeeper
+    goalkeeper,
+    matchweek
   };
+}
+
+export const getTeams = async() => {
+                const {data,error} = await supabase
+                .from('positions')
+                .select('team')
+                .order('team',{ascending: false});
+
+        if (error) throw new Error(error.message);
+          return data;
+                
 }
