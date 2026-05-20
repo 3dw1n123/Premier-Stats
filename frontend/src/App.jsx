@@ -12,7 +12,6 @@ function App() {
 
 const {data: standings,isLoading: loadinStandings} = useStandings();
 const {data: topStats, isLoading: loadingStats, isError} = useHomeStats();
-console.log(topStats)
 
 
   return (

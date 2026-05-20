@@ -52,7 +52,6 @@ export const getPlayerById = async({id}) =>{
     .single();
 
       if (error) throw new Error(error.message);  
-      console.log(data)
       return data;
 }
 
