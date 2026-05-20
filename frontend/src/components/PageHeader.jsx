@@ -50,9 +50,6 @@ const PageHeader = () => {
                     <NavLink to="/" onClick={(e) => handleMobileNav(e, "/")} className={getLinkClasses}>
                       Home
                     </NavLink>
-                    <NavLink to="/teams" onClick={(e) => handleMobileNav(e, "/teams")} className={getLinkClasses}>
-                      Teams
-                    </NavLink>
                     <NavLink to="/players" onClick={(e) => handleMobileNav(e, "/players")} className={getLinkClasses}>
                       Players
                     </NavLink>
