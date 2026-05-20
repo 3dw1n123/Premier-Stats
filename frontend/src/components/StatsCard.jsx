@@ -1,16 +1,29 @@
 import React from 'react'
 import { Link } from "react-router"
+import { useQueryClient } from "@tanstack/react-query";
+import { getPlayerById } from "../api/services";
+
+
 
 const StatsCard = ({title,player,stat,amount,team,id}) => {
   const playerSlug = player ? player.toLowerCase().replace(/\s+/g, '-') : '';
+  const queryClient = useQueryClient();
   
+  const handlePrefetch = (id) => {
+    queryClient.prefetchQuery({
+      queryKey: ["player", id],
+      queryFn: () => getPlayerById({ id }),
+      staleTime: 1000 * 60 * 5,
+    });
+  };
+
   return (
     <div className="flex flex-col p-6 rounded-xl shadow-lg">
             <div className="relative flex flex-col flex-1">
                 <div>
                   <span className="text-primary-premier font-bold uppercase tracking-widest text-[10px] mb-4 block">Top {title}</span>
                   <h4 className="mb-2">
-                    <Link to={`/player/${id}/${playerSlug}`} className="text-primary-premier font-headline text-2xl xl:text-3xl font-black text-primary-container leading-none hover:opacity-80 transition-opacity">{player}</Link>
+                    <Link to={`/player/${id}/${playerSlug}`} onMouseEnter={() => handlePrefetch(id)} className="text-primary-premier font-headline text-2xl xl:text-3xl font-black text-primary-container leading-none hover:opacity-80 transition-opacity">{player}</Link>
                   </h4>
                   
                   <p className="text-secondary-premier text-sm font-bold text-secondary mb-4 uppercase tracking-tighter">{team}</p>

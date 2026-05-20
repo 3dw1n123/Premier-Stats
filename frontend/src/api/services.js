@@ -10,7 +10,7 @@ export const getStandings = async() =>{
         return data;
   }
 
-export const getPlayers = async({pageParam, search}) =>{
+export const getPlayers = async({pageParam, search, sortBy, sortOrder, team, position}) =>{
                 const items_per_page = 8;
                 const from = pageParam * items_per_page;
                 const to = from + items_per_page - 1;
@@ -20,7 +20,22 @@ export const getPlayers = async({pageParam, search}) =>{
                   .select('*')
               
                 if (search) {
-                  query = query.or(`player_name.ilike.%${search}%,team.ilike.%${search}%`)
+                  query = query.or(`player_name.ilike.%${search}%`)
+                }
+
+                if (team) {
+                  query = query.eq('team', team);
+                }
+
+                if (position) {
+                  query = query.ilike('position', `%${position}%`);
+                }
+
+                if (sortBy) {
+                const isAscending = sortOrder === 'asc';
+                query = query.order(sortBy, { ascending: isAscending, nullsFirst: false });
+                } else {
+                  query = query.order('player_name', { ascending: true });
                 }
                 
                 const {data,error} = await query.range(from, to) 
@@ -37,7 +52,6 @@ export const getPlayerById = async({id}) =>{
     .single();
 
       if (error) throw new Error(error.message);  
-      console.log(data)
       return data;
 }
 
@@ -75,16 +89,40 @@ export const getTopGoalkeeper = async() =>{
         return data;
 }
 
-export const getTopStatsCards = async () => {
-  const [scorer, assister, goalkeeper] = await Promise.all([
+export const getMatchWeek = async() =>{    
+                const {data,error} = await supabase
+                .from('positions')
+                .select('MP')
+                .order('MP', {ascending: false})
+                .limit(1).single();
+
+      if (error) throw new Error(error.message); 
+        return data;
+}
+
+export const getHomeStats = async () => {
+  const [scorer, assister, goalkeeper, matchweek] = await Promise.all([
     getTopScorer(),
     getTopAssister(),
-    getTopGoalkeeper()
+    getTopGoalkeeper(),
+    getMatchWeek()
   ]);
 
   return {
     scorer,
     assister,
-    goalkeeper
+    goalkeeper,
+    matchweek
   };
+}
+
+export const getTeams = async() => {
+                const {data,error} = await supabase
+                .from('positions')
+                .select('team')
+                .order('team',{ascending: true});
+
+        if (error) throw new Error(error.message);
+          return data.map(item => item.team);
+                
 }

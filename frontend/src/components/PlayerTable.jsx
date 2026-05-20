@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import { getPlayerById } from "../api/services";
 import { useQueryClient } from "@tanstack/react-query";
 
-const PlayerTable = ({players, observerRef, isFetchingNextPage, hasNextPage}) => {
+const PlayerTable = ({players, observerRef, isFetchingNextPage, hasNextPage, onSort, sortBy, sortOrder, isFetching}) => {
 
 const queryClient = useQueryClient();
 
@@ -14,6 +14,11 @@ const handlePrefetch = (id) => {
   });
 };
 
+const renderSortIndicator = (columnName) => {
+    if (sortBy !== columnName) return null;
+    return sortOrder === "asc" ? " ↑" : " ↓";
+  };
+
   return (
 
     <div className="overflow-y-auto max-h-[600px]">
@@ -21,15 +26,22 @@ const handlePrefetch = (id) => {
                         <thead className=" items-center">
                           <tr className="text-white font-bold sticky top-0 bg-primary-premier">
                             <th className=" px-4 py-3  ">Player</th>
-                            <th className="  px-2 py-3 text-center">MP</th>
-                            <th className="  px-2 py-3 text-center">G</th>
-                            <th className="  px-2 py-3 text-center">A</th>
-                            <th className="  px-2 py-3 text-center">YC</th>
-                            <th className="  px-2 py-3 text-center">RC</th>
+                            <th className="  px-2 py-3 text-center cursor-pointer" onClick={() => onSort("matches_played")}>MP{renderSortIndicator("matches_played")}</th>
+                            <th className="  px-2 py-3 text-center cursor-pointer" onClick={() => onSort("goals")}>G{renderSortIndicator("goals")}</th>
+                            <th className="  px-2 py-3 text-center cursor-pointer" onClick={() => onSort("assists")}>A{renderSortIndicator("assists")}</th>
+                            <th className="  px-2 py-3 text-center cursor-pointer" onClick={() => onSort("yellow_cards")}>YC{renderSortIndicator("yellow_cards")}</th>
+                            <th className="  px-2 py-3 text-center cursor-pointer" onClick={() => onSort("red_cards")}>RC{renderSortIndicator("red_cards")}</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
-                            {players.map((player,index)=>(
+                          {players.length === 0 && isFetching ? (
+                            <tr>
+                              <td colSpan="6" className="px-4 py-8 text-center text-gray-500 font-bold">
+                                Loading data...
+                              </td>
+                            </tr>
+                          ) : (
+                            players.map((player,index)=>(
                                 <tr className="hover:bg-gray-100 transition-colors " key={index}>
                                     <td className="px-4 py-2">
                                         <div className="flex flex-col">
@@ -47,7 +59,8 @@ const handlePrefetch = (id) => {
                                     <td className="px-2 py-2 text-center text-xs font-bold">{player.yellow_cards}</td>
                                     <td className="px-2 py-2 text-center text-xs font-bold">{player.red_cards}</td>
                                 </tr>
-                                    ))}
+                                    ))
+                                  )}
 
                         </tbody>
 
