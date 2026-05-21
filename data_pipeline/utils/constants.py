@@ -172,7 +172,7 @@ rename_columns = {  "player":"player_name",
                     
 players_position = {"GK":"Goalkeeper",
                     "DF":"Defender",
-                    "MF":"Midfiler",
+                    "MF":"Midfielder",
                     "FW":"Forward"}
 
 rounding_overrides = {
