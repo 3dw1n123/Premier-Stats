@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5"
-import { NavLink,useLocation } from "react-router"
+import { NavLink,useLocation,Link } from "react-router"
 
 const PageHeader = () => {
 
@@ -27,9 +27,9 @@ const PageHeader = () => {
           <div className='relative z-50 mx-auto flex w-full max-w-[1440px] items-center justify-between px-12 py-4'>
               
               <div className="flex gap-8 items-center">
-                <span className="text-2xl font-black text-white italic">
-                  PL stats
-                </span>
+              <Link to="/" onClick={closeMenu} className="text-2xl font-black text-white italic">
+                PL stats
+              </Link>
 
                 <nav className="hidden gap-6 md:flex">
                   <NavLink to="/" className={getLinkClasses}>Home</NavLink>
