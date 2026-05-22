@@ -19,6 +19,7 @@ export const playerStatsConfig = (player) => ({
       label: "Position",
       desc: "The primary role the player plays on the pitch.",
       value: player.position,
+      isPosition: true,
     },
     {
       label: "Age",
