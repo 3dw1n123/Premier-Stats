@@ -1,6 +1,6 @@
 import StandingTable from './components/StandingTable'
 import StatsCard from './components/StatsCard'
-import { FaRegCalendar } from "react-icons/fa6"
+import { GrGroup } from "react-icons/gr";
 import { ImStatsBars } from "react-icons/im"
 import PageHeader from './components/PageHeader'
 import ButtonCard from './components/ButtonCard'
@@ -59,9 +59,10 @@ const {data: topStats, isLoading: loadingStats, isError} = useHomeStats();
                             )}
                               <div className="flex flex-col gap-4">
                                 <ButtonCard 
-                                  title="Next Fixtures" 
-                                  icon={<FaRegCalendar color="white"/>} 
-                                  bgColor="bg-primary-premier" 
+                                  title="Players Statistics" 
+                                  icon={<GrGroup color="white"/>} 
+                                  bgColor="bg-primary-premier"
+                                  route="./players"
                                 />
                                 <ButtonCard 
                                   title="Advanced Metrics" 

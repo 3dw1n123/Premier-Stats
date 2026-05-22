@@ -5,7 +5,6 @@ import PlayerProfileCard from "./components/PlayerProfileCard";
 import {playerStatsConfig } from "./constants/playerStatsConfig";
 import { PLAYER_STATS_SECTIONS_BY_POSITION } from "./constants/playerStatsByPosition";
 
-
 function PlayerStats(){
     const {id} = useParams();
 
@@ -20,9 +19,9 @@ function PlayerStats(){
     <>
         <PageHeader/>
         <main className="mx-auto max-w-[1440px] px-6 py-8 font-Inter">
-            <header className="mb-8 rounded-xl border-l-4 p-6 shadow-lg">
-                <h1 className="mb-2 text-4xl font-black tracking-tighter uppercase ">{player.player_name}</h1>
-                <div className="flex gap-4 text-sm font-bold tracking-widest text-gray-500 uppercase">
+            <header className="mb-8 rounded-xl border-l-4 border-secondary-premier p-6 shadow-lg">
+                <h1 className="mb-2 text-4xl text-primary-premier font-black tracking-tighter uppercase ">{player.player_name}</h1>
+                <div className="flex gap-4 text-sm font-bold tracking-widest text-gray-700 uppercase">
                     <span>{playerPos}</span>
                     <span>•</span>
                     <span>{player.team}</span>
@@ -31,7 +30,7 @@ function PlayerStats(){
 
             
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {
               PLAYER_STATS_SECTIONS_BY_POSITION[playerPos]?.map(({section, title, isGeneral, isBigger}) => (
                   <PlayerProfileCard key={section} title={title} stats = {stats[section]} isGeneral={isGeneral} isBigger={isBigger}/>
