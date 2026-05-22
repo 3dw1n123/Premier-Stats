@@ -3,26 +3,18 @@ export const PLAYER_STATS_SECTIONS_BY_POSITION = {
     {
       section: "general",
       title: "general",
-      isGeneral: true,
-      isBigger: true,
-    },
+   },
     {
       section: "playingTime",
       title: "playing time",
-      isGeneral: true,
-      isBigger: false,
-    },
-    {
-      section: "discipline",
-      title: "discipline",
-      isGeneral: false,
-      isBigger: false,
     },
     {
       section: "goalkeeping",
       title: "goalkeeping",
-      isGeneral: false,
-      isBigger: false,
+    },
+    {
+      section: "discipline",
+      title: "discipline",
     },
   ],
 
@@ -30,71 +22,53 @@ export const PLAYER_STATS_SECTIONS_BY_POSITION = {
     {
       section: "general",
       title: "general",
-      isGeneral: true,
-      isBigger: true,
-    },
+   },
     {
       section: "playingTime",
       title: "playing time",
-      isGeneral: true,
-      isBigger: false,
-    },
-    {
-      section: "discipline",
-      title: "discipline",
-      isGeneral: false,
-      isBigger: false,
     },
     {
       section: "defense",
       title: "defense",
-      isGeneral: false,
-      isBigger: false,
     },
     {
-      section: "teamImpact",
-      title: "team impact",
-      isGeneral: false,
-      isBigger: false,
+      section: "creation",
+      title: "creation",
+    },
+    {
+      section: "goalscoring",
+      title: "goalscoring",
+    },
+    {
+      section: "discipline",
+      title: "discipline",
     },
   ],
 
-  midfiler: [
+  midfielder: [
     {
       section: "general",
       title: "general",
-      isGeneral: true,
-      isBigger: true,
-    },
+   },
     {
       section: "playingTime",
       title: "playing time",
-      isGeneral: true,
-      isBigger: false,
     },
     {
-      section: "attack",
-      title: "attack",
-      isGeneral: false,
-      isBigger: false,
+      section: "creation",
+      title: "creation",
+    },
+    {
+      section: "goalscoring",
+      title: "goalscoring",
     },
     {
       section: "defense",
       title: "defense",
-      isGeneral: false,
-      isBigger: false,
-    },
-    {
-      section: "teamImpact",
-      title: "team impact",
-      isGeneral: false,
-      isBigger: false,
     },
     {
       section: "discipline",
       title: "discipline",
-      isGeneral: false,
-      isBigger: false,
     },
   ],
 
@@ -102,32 +76,26 @@ export const PLAYER_STATS_SECTIONS_BY_POSITION = {
     {
       section: "general",
       title: "general",
-      isGeneral: true,
-      isBigger: true,
-    },
+   },
     {
       section: "playingTime",
       title: "playing time",
-      isGeneral: true,
-      isBigger: false,
     },
     {
-      section: "attack",
-      title: "attack",
-      isGeneral: false,
-      isBigger: false,
+      section: "goalscoring",
+      title: "goalscoring",
     },
     {
-      section: "penalties",
-      title: "penalties",
-      isGeneral: false,
-      isBigger: false,
+      section: "creation",
+      title: "creation",
     },
     {
       section: "discipline",
       title: "discipline",
-      isGeneral: false,
-      isBigger: false,
+    },
+    {
+      section: "defense",
+      title: "defense",
     },
   ],
 }
